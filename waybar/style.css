@@ -1,30 +1,30 @@
 * { 
-    /* padding-top: 10px;*/ 
     font-family: "MesloLGS NF";  
     font-size: 22px;
     font-weight: normal;
-    border-radius: 0; 
+    border-radius: 0;
 }
 
 window#waybar {
     background-color: #282C34;
     color: #ffffff;
-    transition-property: background-color;
-    transition-duration: .5s;
+    border: 3px solid #ABB2BF;
+    border-radius: 7px;
 }
 
-window#waybar.hidden {
-    opacity: 0.2;
+.modules-center {
+    padding: 3px 0;
 }
 
-#worksaces {
-    background: inherit;
+#workspaces {
+    margin: 3px 0;
+    padding: 0 3px;
 }
 
 #workspaces button {
     padding: 0 10px;
     background-color: transparent;
-    color: #DCDFE4;
+    color: #DCDFE4;          
 }
 
 #workspaces button:hover {
@@ -39,22 +39,22 @@ window#waybar.hidden {
     background-color: #E5C07B;
 }
 
-/* If workspaces is the leftmost module, omit left margin */
+/*
 .modules-left > widget:first-child > #workspaces {
     margin-left: 0;
 }
 
-/* If workspaces is the rightmost module, omit right margin */
 .modules-right > widget:last-child > #workspaces {
     margin-right: 0;
 }
+*/
 
 #clock {
     background: inherit;
     color: #61AFF0;
     font-size: 18px;
     font-weight: bold;
-    margin-right: 7px;
+    padding-right: 12px;
 }
 
 #pulseaudio {
@@ -62,7 +62,7 @@ window#waybar.hidden {
     color: #61AFF0;
     font-size: 18px;
     font-weight: bold;
-    margin-right: 7px;
+    padding-right: 12px;
 }
 
 #pulseaudio.muted {
@@ -72,7 +72,7 @@ window#waybar.hidden {
 
 #tray {
     background: inherit;
-    margin-right: 7px;
+    padding-right: 12px;
 }
 
 #tray > .passive {
@@ -89,5 +89,14 @@ window#waybar.hidden {
     color: #61AFF0;
     font-size: 18px;
     font-weight: bold;
-    margin-right: 7px; 
+    padding-right: 12px;
 }
+
+#custom-updates {
+    color: #C678DD;
+   /* margin-left: 920px;
+    margin-right: 600px;*/
+   /* padding-right: 75px;*/
+}
+
+/*675*/
