@@ -1,0 +1,104 @@
+* { 
+    font-family: "MesloLGS NF";  
+    font-size: 22px;
+    font-weight: normal;
+    border-radius: 0;
+}
+
+window#waybar {
+    background-color: #282C34;
+    color: #ffffff;
+    border: 3px solid #ABB2BF;
+    border-radius: 7px;
+}
+
+.modules-center {
+    padding: 3px 0;
+}
+
+#workspaces {
+    margin: 3px 0;
+    padding: 0 3px;
+}
+
+#workspaces button {
+    padding: 0 10px;
+    background-color: transparent;
+    color: #DCDFE4;          
+}
+
+#workspaces button:hover {
+    background-color: #5C6370;
+}
+
+#workspaces button.active {
+    background: inherit;
+    color: #98C379;
+}
+
+#workspaces button.urgent {
+    background: inherit;
+    color: #E5C07B;
+}
+
+/*
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+*/
+
+#clock {
+    background: inherit;
+    color: #61AFF0;
+    font-size: 18px;
+    font-weight: bold;
+    padding-right: 12px;
+}
+
+#pulseaudio {
+    background: inherit;
+    color: #61AFF0;
+    font-size: 18px;
+    font-weight: bold;
+    padding-right: 12px;
+}
+
+#pulseaudio.muted {
+    background: inherit;
+    color: #E06C75;
+}
+
+#tray {
+    background: inherit;
+    padding-right: 12px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #eb4d4b;
+}
+
+#language {
+    background: inherit;
+    color: #61AFF0;
+    font-size: 18px;
+    font-weight: bold;
+    padding-right: 12px;
+}
+
+#custom-updates {
+    color: #C678DD;
+   /* margin-left: 920px;
+    margin-right: 600px;*/
+   /* padding-right: 75px;*/
+}
+
+/*675*/
