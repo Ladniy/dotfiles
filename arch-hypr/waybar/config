@@ -45,13 +45,7 @@
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
     },
-    "network": {
-        "format-ethernet": "󰈁",
-        "tooltip-format": "{ifname} via {gwaddr}/{ipaddr}",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected 󰈂"
-    },
-    "pulseaudio": {
+   "pulseaudio": {
         "format": "{icon} {volume}%",
         "tooltip": false,
         "format-muted": "󰟎 Muted",
@@ -67,7 +61,7 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["", "", ""]
+            "default": ["󰕿", "󰖀", "󰕾"]
         }
     },
     "pulseaudio#microphone": {

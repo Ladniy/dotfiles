@@ -32,11 +32,13 @@ window#waybar {
 }
 
 #workspaces button.active {
-    background-color: #98C379;    
+    background: inherit;
+    color: #98C379;
 }
 
 #workspaces button.urgent {
-    background-color: #E5C07B;
+    background: inherit;
+    color: #E5C07B;
 }
 
 /*
