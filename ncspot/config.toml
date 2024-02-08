@@ -1,3 +1,5 @@
+notify = "false"
+
 [theme]
 background = "#282C34"
 primary = "#ABB2BF"
