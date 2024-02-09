@@ -1,0 +1,192 @@
+xwayland enable
+
+### Variables
+
+set $bind bindsym --to-code
+
+set $gnome-schema org.gnome.desktop.interface
+
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+
+set $term alacritty
+set $menu tofi-run | xargs swaymsg exec --
+
+### Exec
+
+exec waybar
+exec swaybg -i ~/.config/sway/wallpaper.png
+
+exec_always {
+    gsettings set $gnome-schema gtk-theme 'Arc-Dark'
+    gsettings set $gnome-schema icon-theme 'Adwaita'
+}
+
+### Output configuration
+#
+# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+output * bg /home/ladniy/.config/sway/wallpaper.png fill
+#
+# Example configuration:
+#
+#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+#
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+
+### Idle configuration
+#
+# Example configuration:
+#
+# exec swayidle -w \
+#          timeout 300 'swaylock -f -c 000000' \
+#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+#          before-sleep 'swaylock -f -c 000000'
+#
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
+
+### Input configuration
+
+# Trackball set-up
+input 9639:64017:Nordic_2.4G_Wireless_Receiver_Mouse {
+    accel_profile "flat"
+    pointer_accel 0
+}
+
+# Keyboard set-up
+input 7847:104:USB_Dongle {
+    xkb_layout "us,ru"
+    xkb_options "grp:ctrl_space_toggle"
+    repeat_delay 250
+    repeat_rate 20
+}
+
+### Key bindings
+#
+# Basics:
+#
+    # Start a terminal
+    $bind $mod+t exec $term
+
+    # Kill focused window
+    $bind $mod+q kill
+
+    # Start your launcher
+    $bind $mod+d exec $menu
+
+    # Drag floating windows by holding down $mod and left mouse button.
+    floating_modifier $mod normal
+
+    # Reload the configuration file
+    $bind $mod+Control+r reload
+
+    # Screenshot
+    $bind $mod+S exec grim -g "$(slurp)" - | wl-copy
+
+#
+# Moving focus:
+#
+    $bind $mod+$left focus left
+    $bind $mod+$down focus down
+    $bind $mod+$up focus up
+    $bind $mod+$right focus right
+
+#
+# Moving window:
+#
+    $bind $mod+Shift+$left move left
+    $bind $mod+Shift+$down move down
+    $bind $mod+Shift+$up move up
+    $bind $mod+Shift+$right move right
+
+#
+# Switch to workspace:
+#
+    $bind $mod+1 workspace number 1
+    $bind $mod+2 workspace number 2
+    $bind $mod+3 workspace number 3
+    $bind $mod+4 workspace number 4
+    $bind $mod+5 workspace number 5
+    $bind $mod+6 workspace number 6
+    $bind $mod+7 workspace number 7
+    $bind $mod+8 workspace number 8
+    $bind $mod+9 workspace number 9
+    $bind $mod+0 workspace number 10
+
+#
+# Move focused window to workspace:
+#
+    $bind $mod+Control+1 move container to workspace number 1
+    $bind $mod+Control+2 move container to workspace number 2
+    $bind $mod+Control+3 move container to workspace number 3
+    $bind $mod+Control+4 move container to workspace number 4
+    $bind $mod+Control+5 move container to workspace number 5
+    $bind $mod+Control+6 move container to workspace number 6
+    $bind $mod+Control+7 move container to workspace number 7
+    $bind $mod+Control+8 move container to workspace number 8
+    $bind $mod+Control+9 move container to workspace number 9
+    $bind $mod+Control+0 move container to workspace number 10
+
+#
+# Layout stuff:
+#
+    # Toggle layouts between splith and tabbed
+    $bind $mod+Return layout toggle splith tabbed
+
+    # Make the current focus fullscreen
+    $bind $mod+f fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+    $bind $mod+Shift+f floating toggle
+#
+# Scratchpad:
+#
+    # Move the currently focused window to the scratchpad
+    $bind $mod+Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    $bind $mod+minus scratchpad show
+#
+# Resizing containers:
+#
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+gaps outer 10
+gaps inner 5
+
+default_border pixel 3
+default_floating_border pixel 3
+
+focus_follows_mouse no
+
+#              <border> <background> <text>  [<indicator> <child_border>]
+client.focused #61AFEF  #61AFEF      #DCDFE4 #61AFEF
+
+bar mode invisible
+
+include /etc/sway/config.d/*
