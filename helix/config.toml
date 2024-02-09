@@ -1,0 +1,9 @@
+theme = "onedark"
+
+[editor]
+line-number = "relative"
+bufferline = "always"
+
+[editor.file-picker]
+hidden = false
+git-global = true
