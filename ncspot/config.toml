@@ -1,4 +1,4 @@
-notify = "false"
+notify = false
 
 [theme]
 background = "#282C34"
