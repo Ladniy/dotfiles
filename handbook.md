@@ -13,25 +13,23 @@
 ## Sway
 
 ```
-# pacman -s sway
+# pacman -Sy sway
 ```
 
 ## Login Manager and setting environment variables
 
-I use greetd as login manager and tuigreet as greeter.
-
 ### Installation:
 
 ```
-$ sudo pacman -s greetd greetd-tuigreet
+# pacman -Sy greetd greetd-tuigreet
 ```
 
-#### Configuration:
+### Configuration:
 
 Enable `greetd.service`
 
 ```
-$ systemctl enable greetd.service
+# systemctl enable greetd.service
 ```
 
 Edit configuration file `/etc/greetd/config.toml`:
@@ -73,7 +71,7 @@ exec systemd-cat --identifier=sway sway $@
 And made it executable:
 
 ```
-$ chmod +x sway-run
+# chmod +x sway-run
 ```
 
 > [!NOTE]
@@ -92,7 +90,7 @@ Default arch installation have a lack of fonts for asian languages.
 I preffer Google Noto fonts to close this lack:
 
 ```
-$ pacman -S noto-fonts-cjk
+# pacman -Sy noto-fonts-cjk
 ```
 
 ### Terminal font:
@@ -100,10 +98,10 @@ $ pacman -S noto-fonts-cjk
 For terminal one I really love Iosevka Nerd Mono:
 
 ```
-$ pacman -S ttf-iosevkaterm-nerd
+# pacman -Sy ttf-iosevkaterm-nerd
 ```
 
-Set font in your terminal, in my case it is Alacritty.
+Set font in your terminal, in my case it is Alacritty and Kitty.
 
 This command can help your with search of correct name of font family:
 
@@ -116,46 +114,32 @@ $ fc-list | grep Iosevka
 * [Arch Wiki: Fonts](https://wiki.archlinux.org/title/fonts)
 * [Arch Wiki: Localization](https://wiki.archlinux.org/title/Localization)
 
-## Uniform look of application
+## Appearance:
 
-First of all, you need to understand that applications use various GUI libs, like Qt, GTK or even Electron-based.
-
-It means that if you want a really uniform look of your environment you need to choose between Qt and GTK. I will choose Qt.
-
-### Themes:
-
-Install qt5ct and Kvantum Manager:
+Install qt5ct, qt6ct and Kvantum Manager:
 
 ```
-$ pacman -S qt5ct qt6ct kvantum
-```
-
-or
-
-```
-$ paru -S qt5ct-kde
+# pacman -Sy qt5ct qt6ct kvantum
 ```
 
 Kvantum Manager already have some themes, I prefer Arc Dark.
 
-
-
-Install breeze theme and icons:
+Install Arc Solid theme for GTK apps and Papirus icons:
 
 ```
-$ pacman -S breeze breeze-icons breeze-gtk
+# pacman -Sy arc-solid-gtk-theme papirus-icon-theme
 ```
+
+Set Arc theme in Kvantum, then set Kvantum theme, fonts and icons in qt5ct and qt6ct.
 
 ## Shell Set-up
-
-I prefer to use Zsh, so here will be a how-to for this command shell.
 
 ### Installation:
 
 Install Zsh and some plugins:
 
 ```
-$ pacman -S zsh zsh-autosuggestions zsh-completions zsh-syntax-highlighting
+# pacman -Sy zsh zsh-autosuggestions zsh-completions zsh-syntax-highlighting
 ```
 
 Change your shell to Zsh:
@@ -164,34 +148,10 @@ Change your shell to Zsh:
 $ chsh -s /usr/bin/zsh
 ```
 
-After that re-log into your session, you will see new-user screen, folow the instructions.
-
-Open .zshrc file and put this lines to the bottom to turn on plugins:
-
-```
-# Autosuggestions plugin
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-```
-
-```
-# Syntax highlighting plugin
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-```
-
-Restart Zsh, e. g. close and open new terminal instance
-
-### Zsh theme
-
-I like powerlevel10k theme, but you, ofcourse, can choose any.
+### Zsh theme:
 
 Clone git repo:
 
 ```
-$ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-```
-
-Put this line on the bottom of .zshrc file:
-
-```
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+$ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/Git/powerlevel10k
 ```
