@@ -1,8 +1,20 @@
-# Installation of Arch with Sway, Zen kernel and other nice things :]
+# Installation of Arch with Sway and other nice things :]
 
-## Arch install
+> [!NOTE]
+> Hash symbol means sudo:
+> ```
+> # echo 'example'
+> ```
+> And dollar symbol means normal user:
+> ```
+> $ echo 'example'
+> ```
 
 ## Sway
+
+```
+# pacman -s sway
+```
 
 ## Login Manager and setting environment variables
 
@@ -14,7 +26,7 @@ I use greetd as login manager and tuigreet as greeter.
 $ sudo pacman -s greetd greetd-tuigreet
 ```
 
-### Configuration:
+#### Configuration:
 
 Enable `greetd.service`
 
