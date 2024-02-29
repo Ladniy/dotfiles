@@ -1,192 +1,174 @@
-xwayland enable
-
 ### Variables
 
-set $bind bindsym --to-code
+    # Set super as mod key
+    set $mod Mod4
 
-set $gnome-schema org.gnome.desktop.interface
+    # Set direction key like a vim navigation
+    set $left h
+    set $down j
+    set $up k
+    set $right l
 
-set $mod Mod4
-set $left h
-set $down j
-set $up k
-set $right l
+    # Apps
+    set $term kitty
+    set $fm dolphin
+    set $menu tofi-drun | xargs swaymsg exec --
 
-set $term alacritty
-set $menu tofi-run | xargs swaymsg exec --
+    # Gsettings
+    set $gnome-schema org.gnome.desktop.interface
 
-### Exec
+### Autolaunch
 
-exec waybar
-exec swaybg -i ~/.config/sway/wallpaper.png
+    # Once
+    exec {
+        waybar
+    }
 
-exec_always {
-    gsettings set $gnome-schema gtk-theme 'Arc-Dark'
-    gsettings set $gnome-schema icon-theme 'Adwaita'
-}
-
-### Output configuration
-#
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/ladniy/.config/sway/wallpaper.png fill
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
-
-### Idle configuration
-#
-# Example configuration:
-#
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-#          before-sleep 'swaylock -f -c 000000'
-#
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
-
+    # Always
+    exec_always {
+        gsettings set $gnome-schema gtk-theme 'Arc-Dark'
+        gsettings set $gnome-schema icon-theme 'Arc'
+        gsettings set $gnome-schema color-scheme 'prefer-dark'
+    }
+ 
 ### Input configuration
 
-# Trackball set-up
-input 9639:64017:Nordic_2.4G_Wireless_Receiver_Mouse {
-    accel_profile "flat"
-    pointer_accel 0
-}
+    # Keyboard
+    input "type:keyboard" {
+        xkb_layout us,ru
+        xkb_options grp:ctrl_space_toggle
+        repeat_delay 250
+        repeat_rate 50
+    }
 
-# Keyboard set-up
-input 7847:104:USB_Dongle {
-    xkb_layout "us,ru"
-    xkb_options "grp:ctrl_space_toggle"
-    repeat_delay 250
-    repeat_rate 20
-}
+    # Trackball
+    input 9639:64017:Nordic_2.4G_Wireless_Receiver_Mouse {
+        accel_profile "flat"
+    }
 
 ### Key bindings
-#
+
 # Basics:
-#
+
     # Start a terminal
-    $bind $mod+t exec $term
+    bindsym --to-code $mod+t exec $term
+
+    # Start file manager
+    bindsym --to-code $mod+e exec $fm
 
     # Kill focused window
-    $bind $mod+q kill
+    bindsym --to-code $mod+q kill
 
-    # Start your launcher
-    $bind $mod+d exec $menu
+    # Start launcher
+    bindsym --to-code $mod+r exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
     floating_modifier $mod normal
 
     # Reload the configuration file
-    $bind $mod+Control+r reload
+    bindsym --to-code $mod+Shift+c reload
 
-    # Screenshot
-    $bind $mod+S exec grim -g "$(slurp)" - | wl-copy
+    # Exit sway (logs you out of your Wayland session)
+    bindsym --to-code $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
-#
-# Moving focus:
-#
-    $bind $mod+$left focus left
-    $bind $mod+$down focus down
-    $bind $mod+$up focus up
-    $bind $mod+$right focus right
+# Moving around:
 
-#
-# Moving window:
-#
-    $bind $mod+Shift+$left move left
-    $bind $mod+Shift+$down move down
-    $bind $mod+Shift+$up move up
-    $bind $mod+Shift+$right move right
+    # Move your focus around
+    bindsym --to-code $mod+$left focus left
+    bindsym --to-code $mod+$down focus down
+    bindsym --to-code $mod+$up focus up
+    bindsym --to-code $mod+$right focus right
 
-#
-# Switch to workspace:
-#
-    $bind $mod+1 workspace number 1
-    $bind $mod+2 workspace number 2
-    $bind $mod+3 workspace number 3
-    $bind $mod+4 workspace number 4
-    $bind $mod+5 workspace number 5
-    $bind $mod+6 workspace number 6
-    $bind $mod+7 workspace number 7
-    $bind $mod+8 workspace number 8
-    $bind $mod+9 workspace number 9
-    $bind $mod+0 workspace number 10
+    # Move the focused window with the same, but add Control
+    bindsym --to-code $mod+Ctrl+$left move left
+    bindsym --to-code $mod+Ctrl+$down move down
+    bindsym --to-code $mod+Ctrl+$up move up
+    bindsym --to-code $mod+Ctrl+$right move right
 
-#
-# Move focused window to workspace:
-#
-    $bind $mod+Control+1 move container to workspace number 1
-    $bind $mod+Control+2 move container to workspace number 2
-    $bind $mod+Control+3 move container to workspace number 3
-    $bind $mod+Control+4 move container to workspace number 4
-    $bind $mod+Control+5 move container to workspace number 5
-    $bind $mod+Control+6 move container to workspace number 6
-    $bind $mod+Control+7 move container to workspace number 7
-    $bind $mod+Control+8 move container to workspace number 8
-    $bind $mod+Control+9 move container to workspace number 9
-    $bind $mod+Control+0 move container to workspace number 10
+# Workspaces:
 
-#
-# Layout stuff:
-#
-    # Toggle layouts between splith and tabbed
-    $bind $mod+Return layout toggle splith tabbed
+    # Switch to workspace
+    bindsym --to-code $mod+1 workspace number 1
+    bindsym --to-code $mod+2 workspace number 2
+    bindsym --to-code $mod+3 workspace number 3
+    bindsym --to-code $mod+4 workspace number 4
+    bindsym --to-code $mod+5 workspace number 5
+    bindsym --to-code $mod+6 workspace number 6
+    bindsym --to-code $mod+7 workspace number 7
+    bindsym --to-code $mod+8 workspace number 8
+    bindsym --to-code $mod+9 workspace number 9
+    bindsym --to-code $mod+0 workspace number 10
+
+    # Move focused container to workspace
+    bindsym --to-code $mod+Ctrl+1 move container to workspace number 1
+    bindsym --to-code $mod+Ctrl+2 move container to workspace number 2
+    bindsym --to-code $mod+Ctrl+3 move container to workspace number 3
+    bindsym --to-code $mod+Ctrl+4 move container to workspace number 4
+    bindsym --to-code $mod+Ctrl+5 move container to workspace number 5
+    bindsym --to-code $mod+Ctrl+6 move container to workspace number 6
+    bindsym --to-code $mod+Ctrl+7 move container to workspace number 7
+    bindsym --to-code $mod+Ctrl+8 move container to workspace number 8
+    bindsym --to-code $mod+Ctrl+9 move container to workspace number 9
+    bindsym --to-code $mod+Ctrl+0 move container to workspace number 10
+
+# Layouts:
 
     # Make the current focus fullscreen
-    $bind $mod+f fullscreen
+    bindsym --to-code $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    $bind $mod+Shift+f floating toggle
-#
+    bindsym --to-code $mod+Shift+f floating toggle
+
+    # Toggle layouts between split and tabbed
+    bindsym --to-code $mod+Return layout toggle split tabbed
+
 # Scratchpad:
-#
+
     # Move the currently focused window to the scratchpad
-    $bind $mod+Shift+minus move scratchpad
+    bindsym --to-code $mod+Shift+minus move scratchpad
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
-    $bind $mod+minus scratchpad show
-#
+    bindsym --to-code $mod+minus scratchpad show
+
 # Resizing containers:
-#
-mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
 
-    # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+    # Set-up resize mode
+    mode "resize" {
+        # left will shring the containers width
+        bindsym --to-code $left resize shrink width 25px
 
-    # Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+r mode "resize"
+        # right will grow the containers width
+        bindsym --to-code $down resize grow height 25px
 
-gaps outer 10
-gaps inner 5
+        # up will shrink the containers height
+        bindsym --to-code $up resize shrink height 25px
 
-default_border pixel 3
-default_floating_border pixel 3
+        # down will grow the containers height
+        bindsym --to-code $right resize grow width 25px
 
-focus_follows_mouse no
+        # Return to default mode
+        bindsym --to-code Return mode "default"
+        bindsym --to-code Escape mode "default"
+    }
 
-#              <border> <background> <text>  [<indicator> <child_border>]
-client.focused #61AFEF  #61AFEF      #DCDFE4 #61AFEF
+    # Keybind
+    bindsym --to-code $mod+Shift+r mode "resize"
 
-bar mode invisible
 
-include /etc/sway/config.d/*
+# Appearance:
+
+    # Gaps
+    gaps inner 30
+
+    # Borders
+    default_border pixel 3
+    default_floating_border pixel 3
+
+    #              <border> <background> <text>  [<indicator> <child_border>]
+#   client.focused #61AFEF  #61AFEF      #DCDFE4 #61AFEF
+
+# Status Bar:
+
+    # Make swaybar invisible
+    bar mode invisible
