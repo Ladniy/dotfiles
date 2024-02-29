@@ -11,7 +11,7 @@ I use greetd as login manager and tuigreet as greeter.
 ### Installation:
 
 ```
-$ sudo pacman -s greetd tuigreet
+$ sudo pacman -s greetd greetd-tuigreet
 ```
 
 ### Configuration:
@@ -45,7 +45,7 @@ export XDG_CURRENT_DESKTOP=sway
 
 # Toolkit Backend Vars
 export GDK_BACKEND=wayland
-export QT_QPA_PLATFORM=wayland
+export QT_QPA_PLATFORM="wayland;xcb"
 
 # Qt Vars
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
@@ -116,6 +116,12 @@ Install qt5ct and Kvantum Manager:
 
 ```
 $ pacman -S qt5ct qt6ct kvantum
+```
+
+or
+
+```
+$ paru -S qt5ct-kde
 ```
 
 Kvantum Manager already have some themes, I prefer Arc Dark.
