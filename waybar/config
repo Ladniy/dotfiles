@@ -2,18 +2,15 @@
     "layer": "top",
     "position": "top",
     "height": 30,
-    "spacing": 4,
+    "spacing": 10,
     "modules-left": [
         "sway/workspaces",
-        "sway/mode",
-        "sway/scratchpad",
+        "sway/mode"
     ],
     "modules-center": [
     ],
     "modules-right": [
         "tray",
-        "custom/pipewire-sink",
-        "custom/pipewire-source",
         "network",
         "sway/language",
         "clock"
@@ -36,42 +33,23 @@
         }
     },
     "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-    "sway/scratchpad": {
-        "format": "{icon} {count}",
-        "show-empty": false,
-        "format-icons": ["", ""],
-        "tooltip": true,
-        "tooltip-format": "{app}: {title}"
+        "format": "{}"
     },
     "tray": {
-        "icon-size": 21,
-        "spacing": 10
-    },
-    "clock": {
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "icon-size": 20,
+        "spacing": 10,
+        "reverse-direction": true
     },
     "network": {
-        "format-ethernet": "󰌘",
-        "format-linked": "󰌚",
-        "format-disconnected": "󰌙",
+        "format-ethernet": "󰈀",
+        "format-linked": "󰈀",
+        "format-disconnected": "󰈀"
     },
-    "custom/pipewire-sink": {
-        "tooltip": false,
-        "max-length": 6,
-        "exec": "$HOME/.config/waybar/scripts/pipewire-sink.sh",
-        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+",
-        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"
+    "sway/language": {
+        "format": "<span text_transform=\"2\">{}</span>"
     },
-    "custom/pipewire-source": {
-        "tooltip": false,
-        "max-length": 6,
-        "exec": "$HOME/.config/waybar/scripts/pipewire-source.sh",
-        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
-        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 0.1+",
-        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 0.1-"
+    "clock": {
+        "format": "{:%H:%M}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     }
 }
