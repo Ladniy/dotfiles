@@ -16,13 +16,13 @@
     # Apps
     set $term kitty
     set $fm dolphin
-    set $menu tofi-drun | xargs swaymsg exec --
 
     # Gsettings
     set $gnome-schema org.gnome.desktop.interface
 
     # wob
-    set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
+    set $drun tofi-drun -c $HOME/.config/tofi/drun-config.ini | xargs swaymsg exec --
+    set $dmenu tofi -c $HOME/.config/tofi/dmenu-config.ini
 
 ### Autolaunch
 
@@ -71,10 +71,10 @@
     bindsym --to-code $mod+e exec $fm
 
     # Start launcher
-    bindsym --to-code $mod+r exec $menu
+    bindsym --to-code $mod+space exec $drun
 
     # Clipboard
-    bindsym --to-code $mod+v exec cliphist list | tofi | cliphist decode | wl-copy
+    bindsym --to-code $mod+v exec cliphist list | $dmenu | cliphist decode | wl-copy
 
     # Take a screenshot (screen)
     bindsym --to-code $mod+s exec grim $(xdg-user-dir PICTURES)/Screenshots/$(date +'%s_grim.png') | wl-copy
