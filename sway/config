@@ -90,7 +90,7 @@
     floating_modifier $mod normal
 
     # Reload the configuration file
-    bindsym --to-code $mod+Shift+c reload
+    bindsym --to-code $mod+Shift+r reload
 
     # Exit sway (logs you out of your Wayland session)
     bindsym --to-code $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
@@ -177,7 +177,7 @@
     }
 
     # Keybind
-    bindsym --to-code $mod+Shift+r mode "resize"
+    bindsym --to-code $mod+r mode "resize"
 
 
 # Appearance:
