@@ -33,7 +33,7 @@
         }
     },
     "sway/mode": {
-        "format": "{}"
+        "format": "<span text_transform=\"2\">{}</span>"
     },
     "tray": {
         "icon-size": 20,
