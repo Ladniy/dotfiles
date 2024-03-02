@@ -160,16 +160,16 @@
     # Set-up resize mode
     mode "resize" {
         # left will shring the containers width
-        bindsym --to-code $left resize shrink width 25px
+        bindsym --to-code $left resize shrink width 50px
 
         # right will grow the containers width
-        bindsym --to-code $down resize grow height 25px
+        bindsym --to-code $down resize grow height 50px
 
         # up will shrink the containers height
-        bindsym --to-code $up resize shrink height 25px
+        bindsym --to-code $up resize shrink height 50px
 
         # down will grow the containers height
-        bindsym --to-code $right resize grow width 25px
+        bindsym --to-code $right resize grow width 50px
 
         # Return to default mode
         bindsym --to-code Return mode "default"
