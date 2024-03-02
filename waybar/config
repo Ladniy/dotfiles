@@ -43,7 +43,8 @@
     "network": {
         "format-ethernet": "󰈀",
         "format-linked": "󰈀",
-        "format-disconnected": "󰈀"
+        "format-disconnected": "󰈀",
+        "tooltip-format": "{ipaddr}"
     },
     "sway/language": {
         "format": "<span text_transform=\"2\">{}</span>"
