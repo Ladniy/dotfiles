@@ -198,8 +198,8 @@
 
     # Colors
     #                        #border #background #text   #indicator #child_border
-    client.focused           #5D677A #2F343F     #D2D2D1 #5D677A    #5D677A
-    client.unfocused         #2F343F #2F343F     #D2D2D1 #2F343F    #2F343F
+    client.focused           #D3DAE3 #2F343F     #D2D2D1 #D3DAE3    #D3DAE3
+    client.unfocused         #5D677A #2F343F     #D2D2D1 #5D677A    #5D677A
     client.urgent            #E5C07B #2F343F     #D2D2D1 #E5C07B    #E5C07B
     client.focused_tab_title #5D677A #2F343F     #5294E2 #5D677A    #5D677A
 
