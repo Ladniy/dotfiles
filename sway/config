@@ -9,6 +9,10 @@
     set $up k
     set $right l
 
+    # Set volume keys
+    set $vol-up XF86AudioRaiseVolume
+    set $vol-down XF86AudioLowerVolume
+    set $vol-mute XF86AudioMute
     # Apps
     set $term kitty
     set $fm dolphin
@@ -81,28 +85,15 @@
     # Colorpicker
     bindsym --to-code $mod+p exec hyprpicker --format=hex --no-fancy --autocopy
 
-    # Sink volume control with OSD
-#    bindsym --to-code XF86AudioRaiseVolume exec \
-#        wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ && wpctl get-volume @DEFAULT_AUDIO_SINK@ | sed 's/[^0-9]//g' > $WOBSOCK
-#    bindsym --to-code XF86AudioLowerVolume exec \
-#        wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%- && wpctl get-volume @DEFAULT_AUDIO_SINK@ | sed 's/[^0-9]//g' > $WOBSOCK
-#    bindsym --to-code XF86AudioMute exec \
-#        wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && (wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q MUTED && echo 0 > $WOBSOCK) || wpctl get-volume @DEFAULT_AUDIO_SINK@ > $WOBSOCK
+    # OSD of sink volume level with wob
+    bindsym --to-code $vol-up exec $HOME/.config/sway/scripts/sink-volume-raise.sh
+    bindsym --to-code $vol-down exec $HOME/.config/sway/scripts/sink-volume-lower.sh
+    bindsym --to-code $vol-mute exec $HOME/.config/sway/scripts/sink-volume-mute.sh
 
-    bindsym --to-code XF86AudioRaiseVolume exec \
-        (wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q MUTED && echo 0 > $WOBSOCK) || (wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ && wpctl get-volume @DEFAULT_AUDIO_SINK@ | sed 's/[^0-9]//g' > $WOBSOCK)
-    bindsym --to-code XF86AudioLowerVolume exec \
-        (wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q MUTED && echo 0 > $WOBSOCK) || (wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1- && wpctl get-volume @DEFAULT_AUDIO_SINK@ | sed 's/[^0-9]//g' > $WOBSOCK)
-    bindsym --to-code XF86AudioMute exec \
-        wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && (wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q MUTED && echo 0 > $WOBSOCK) || wpctl get-volume @DEFAULT_AUDIO_SINK@ | sed 's/[^0-9]//g' > $WOBSOCK
-
-    # Source volume control with OSD
-    bindsym --to-code $mod+XF86AudioRaiseVolume exec \
-        (wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q MUTED && echo 0 > $WOBSOCK) || (wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 0.1+ && wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | sed 's/[^0-9]//g' > $WOBSOCK)
-    bindsym --to-code $mod+XF86AudioLowerVolume exec \
-        (wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q MUTED && echo 0 > $WOBSOCK) || (wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 0.1- && wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | sed 's/[^0-9]//g' > $WOBSOCK)
-    bindsym --to-code $mod+XF86AudioMute exec \
-        wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && (wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q MUTED && echo 0 > $WOBSOCK) || wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | sed 's/[^0-9]//g' > $WOBSOCK
+    # OSD of source volume level with wob
+    bindsym --to-code $mod+$vol-up exec $HOME/.config/sway/scripts/source-volume-raise.sh
+    bindsym --to-code $mod+$vol-down exec $HOME/.config/sway/scripts/source-volume-lower.sh
+    bindsym --to-code $mod+$vol-mute exec $HOME/.config/sway/scripts/source-volume-mute.sh
 
     # Drag floating windows by holding down $mod and left mouse button.
     floating_modifier $mod normal
