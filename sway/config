@@ -20,6 +20,9 @@
     set $drun tofi-drun -c $HOME/.config/tofi/drun-config.ini | xargs swaymsg exec --
     set $dmenu tofi -c $HOME/.config/tofi/dmenu-config.ini
 
+    # WOB socket
+    set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
+
 ### Autolaunch:
 
     # Once
@@ -75,7 +78,7 @@
     bindsym --to-code $mod+p exec hyprpicker --format=hex --no-fancy --autocopy
 
     # OSD of sink volume level with wob
-    bindsym --to-code $vol-up exec $HOME/.config/sway/scripts/sink-volume-raise.sh
+    bindsym --to-code XF86AudioRaiseVolume exec $HOME/.config/sway/scripts/sink-volume-raise.sh
     bindsym --to-code $vol-down exec $HOME/.config/sway/scripts/sink-volume-lower.sh
     bindsym --to-code $vol-mute exec $HOME/.config/sway/scripts/sink-volume-mute.sh
 
