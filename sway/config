@@ -1,9 +1,9 @@
-### Variables
+### Variables:
 
     # Set super as mod key
     set $mod Mod4
 
-    # Set direction key like a vim navigation
+    # Set direction keys
     set $left h
     set $down j
     set $up k
@@ -13,16 +13,14 @@
     set $vol-up XF86AudioRaiseVolume
     set $vol-down XF86AudioLowerVolume
     set $vol-mute XF86AudioMute
+
     # Apps
     set $term kitty
     set $fm dolphin
-
-
-    # wob
     set $drun tofi-drun -c $HOME/.config/tofi/drun-config.ini | xargs swaymsg exec --
     set $dmenu tofi -c $HOME/.config/tofi/dmenu-config.ini
 
-### Autolaunch
+### Autolaunch:
 
     # Once
     exec {
@@ -33,7 +31,7 @@
         rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
     }
  
-### Input configuration
+### Input configuration:
 
     # Keyboard
     input "type:keyboard" {
@@ -48,14 +46,14 @@
         accel_profile "flat"
     }
 
-### Key bindings
+### Key bindings:
 
 # Basics:
 
     # Kill focused window
     bindsym --to-code $mod+q kill
 
-    # Start a terminal
+    # Start terminal
     bindsym --to-code $mod+t exec $term
 
     # Start file manager
@@ -97,13 +95,13 @@
 
 # Moving around:
 
-    # Move your focus around
+    # Move focus around
     bindsym --to-code $mod+$left focus left
     bindsym --to-code $mod+$down focus down
     bindsym --to-code $mod+$up focus up
     bindsym --to-code $mod+$right focus right
 
-    # Move the focused window with the same, but add Control
+    # Move the focused window
     bindsym --to-code $mod+Ctrl+$left move left
     bindsym --to-code $mod+Ctrl+$down move down
     bindsym --to-code $mod+Ctrl+$up move up
@@ -180,7 +178,7 @@
     bindsym --to-code $mod+r mode "resize"
 
 
-# Appearance:
+### Appearance:
 
     # Font
     font [pango:]JetBrainsMonoNerdFont 11
@@ -203,7 +201,9 @@
     client.urgent            #E5C07B #2F343F     #D2D2D1 #E5C07B    #E5C07B
     client.focused_tab_title #5D677A #2F343F     #5294E2 #5D677A    #5D677A
 
-# Status Bar:
+### Status Bar:
 
     # Make swaybar invisible
     bar mode invisible
+
+include /etc/sway/config.d/*
