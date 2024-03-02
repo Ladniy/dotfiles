@@ -67,11 +67,11 @@
     # Clipboard
     bindsym --to-code $mod+v exec cliphist list | $dmenu | cliphist decode | wl-copy
 
-    # Take a screenshot (screen)
-    bindsym --to-code $mod+s exec grim $(xdg-user-dir PICTURES)/Screenshots/$(date +'%s_grim.png') | wl-copy
+    # Take a screenshot (entire screen)
+    bindsym --to-code $mod+Shift+s exec grim $HOME/Pictures/Screenshots/$(date +'%s_grim.png') | wl-copy
 
-    # Take a screenshot (area)
-    bindsym --to-code $mod+Shift+s exec grim -g "$(slurp -d)" - | wl-copy
+    # Take a screenshot (specific area)
+    bindsym --to-code $mod+s exec grim -g "$(slurp -d)" - | wl-copy
 
     # Colorpicker
     bindsym --to-code $mod+p exec hyprpicker --format=hex --no-fancy --autocopy
